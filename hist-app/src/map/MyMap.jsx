@@ -2,6 +2,7 @@ import { Map, View } from "ol";
 import TileLayer from 'ol/layer/Tile';
 import { OSM } from 'ol/source';
 import { useEffect, useRef, useState } from "react";
+import { Segment } from "semantic-ui-react";
 
 export default function MyMap({ zoom, center}) {
     const[map, setMap] = useState();
@@ -23,12 +24,15 @@ export default function MyMap({ zoom, center}) {
     });
 
     useEffect(() => {
+        console.log('set');
          setMap(theMap);
     }, []);
 
-
     return (
-        <div id='map' ref={mapElement} className='map-container'>
-        </div>
+        <Segment>
+            <div id='map' ref={mapElement} className='map-container'>
+            </div>
+        </Segment>
+
     );
 }
