@@ -12,7 +12,7 @@ import { useState } from "react";
 export default observer(function SketchesForm() {
     const SKETCHES_LAYER = "sketches-layer";
     const { mapStore } = useStore();
-    const { map, initialSketches } = mapStore;
+    const { map } = mapStore;
     const initialFilters = {
         year: '',
         title: ''
@@ -27,7 +27,8 @@ export default observer(function SketchesForm() {
             filters.push(equalToFilter('Year', formInputs.year));
         }
         if (formInputs.title) {
-            filters.push(likeFilter('TitleLong', "*" + formInputs.year.toUpperCase() + "*"));
+            filters.push(likeFilter('TitleLong', "*" + formInputs.title.toUpperCase() + "*"));
+            console.log(filters)
         }
 
         let filter = null;
@@ -36,13 +37,11 @@ export default observer(function SketchesForm() {
         }
         else if (filters && filters.length > 1) {
             filter = andFilter(...filters);
+            console.log(filter);
         }
         let layer = map.getAllLayers().find(layer => {
             return layer.name && layer.name == SKETCHES_LAYER
         });
-        if (!layer) {
-            layer = initialSketches();
-        }
 
         console.log('found layer', layer);
         const vectorSource = layer.getSource();
@@ -68,7 +67,6 @@ export default observer(function SketchesForm() {
                     vectorSource.addFeatures(features);
                     map.getView().fit(vectorSource.getExtent());
                 }
-
             });
     }
 

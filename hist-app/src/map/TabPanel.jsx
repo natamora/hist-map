@@ -1,4 +1,4 @@
-import { Tab, TabPane } from "semantic-ui-react";
+import { Header, Tab, TabPane } from "semantic-ui-react";
 import SketchesForm from "../SketchesForm";
 
 const panes = [
@@ -6,6 +6,15 @@ const panes = [
     { menuItem: 'Mapy', render: () => <TabPane>Tab 2 Content</TabPane> },
 ]
 
-const TabPanel = () => <Tab panes={panes} />
+export default function TabPanel() {
+    return (
+        <>
+            <Header as='h2'>
+                Przeglądarka map historycznych
+            </Header>
+            <hr></hr>
+            <Tab panes={panes} />
+        </>
+    )
 
-export default TabPanel;
+}
