@@ -13,6 +13,8 @@ import VectorLayer from "ol/layer/Vector";
 import Style from "ol/style/Style";
 import Stroke from "ol/style/Stroke";
 import Fill from "ol/style/Fill";
+import RasterPanel from "./RasterPanel";
+import { WFS_RASTER_LAYER } from "../app/constants/Rasters";
 
 export default observer(function MyMap({ zoom, center }) {
     const { mapStore } = useStore();
@@ -30,6 +32,7 @@ export default observer(function MyMap({ zoom, center }) {
         setMap(theMap);
         addBaseOSMLayer();
         addSketchesLayerWithSelectControl(theMap);
+        addRasterWFSLayer();
 
         return () => {
             if (!theMap) return;
@@ -61,6 +64,20 @@ export default observer(function MyMap({ zoom, center }) {
         theMap.addInteraction(select);
     }
 
+    function addRasterWFSLayer() {
+        const vectorSource = new VectorSource();
+        const layer = new VectorLayer({
+            source: vectorSource,
+            style: new Style({
+                stroke: new Stroke({
+                    color: 'rgba(72, 47, 181, 1.0)',
+                    width: 1,
+                })
+            }),
+        });
+        addLayer(layer, WFS_RASTER_LAYER);
+    }
+
     function addBaseOSMLayer() {
         const osmLayer = new TileLayer({
             source: new OSM(),
@@ -88,6 +105,7 @@ export default observer(function MyMap({ zoom, center }) {
                     </Segment>
                 </Grid.Column>
             </Grid>
+            <RasterPanel/>
         </>
 
 

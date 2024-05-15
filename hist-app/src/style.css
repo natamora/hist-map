@@ -9,3 +9,13 @@ body {
     width: 100%;
     height: 85vh;
 }
+
+.container__table {
+    height: 120px;
+    overflow-y: auto;
+    /* or scroll */
+}
+
+#panel {
+    height: 270px !important;
+}

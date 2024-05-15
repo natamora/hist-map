@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { Button, Form } from "semantic-ui-react";
-import { useStore } from "./app/stores/Store";
+import { useStore } from "../app/stores/Store";
 import { GeoJSON, WFS } from 'ol/format.js';
 import {
     and as andFilter,
@@ -8,9 +8,10 @@ import {
     like as likeFilter,
 } from 'ol/format/filter.js';
 import { useState } from "react";
+import { SKETCHES_LAYER } from "../app/constants/Sketches";
 
 export default observer(function SketchesForm() {
-    const SKETCHES_LAYER = "sketches-layer";
+
     const { mapStore } = useStore();
     const { map } = mapStore;
     const initialFilters = {
@@ -20,15 +21,12 @@ export default observer(function SketchesForm() {
     const [formInputs, setFormInputs] = useState(initialFilters);
 
     function handleAddSketches() {
-        console.log('submit sketches', formInputs);
         var filters = [];
         if (formInputs.year) {
-            console.log(formInputs.year);
             filters.push(equalToFilter('Year', formInputs.year));
         }
         if (formInputs.title) {
             filters.push(likeFilter('TitleLong', "*" + formInputs.title.toUpperCase() + "*"));
-            console.log(filters)
         }
 
         let filter = null;
@@ -37,13 +35,11 @@ export default observer(function SketchesForm() {
         }
         else if (filters && filters.length > 1) {
             filter = andFilter(...filters);
-            console.log(filter);
         }
         let layer = map.getAllLayers().find(layer => {
             return layer.name && layer.name == SKETCHES_LAYER
         });
 
-        console.log('found layer', layer);
         const vectorSource = layer.getSource();
         const featureRequest = new WFS().writeGetFeature({
             srsName: 'EPSG:3857',
@@ -56,13 +52,10 @@ export default observer(function SketchesForm() {
             body: new XMLSerializer().serializeToString(featureRequest),
         })
             .then(function (response) {
-                console.log(response);
                 return response.json();
             })
             .then(function (json) {
-                console.log(json);
                 const features = new GeoJSON().readFeatures(json);
-                console.log(features);
                 if (features.length > 0) {
                     vectorSource.addFeatures(features);
                     map.getView().fit(vectorSource.getExtent());
@@ -74,11 +67,11 @@ export default observer(function SketchesForm() {
         const { name, value } = event.target;
         setFormInputs({ ...formInputs, [name]: value })
     }
+
     function handleClearSketches() {
         map.getLayers().forEach(layer => {
             const { name } = layer;
             if (name && name == SKETCHES_LAYER) {
-                console.log('found layer to clear', layer);
                 layer.getSource().clear();
             }
         });
@@ -87,7 +80,7 @@ export default observer(function SketchesForm() {
         <Form onSubmit={handleAddSketches} autoComplete='off'>
             <Form.Input placeholder="Rok" name='year' onChange={handleInputChange} />
             <Form.Input placeholder="Tytuł" name='title' onChange={handleInputChange} />
-            <Button type='submit' content='Dodaj' positive />
+            <Button type='submit' content='Wyszukaj' positive />
             <Button type="button" content='Wyczyść' onClick={handleClearSketches} />
         </Form>
     );

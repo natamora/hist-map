@@ -1,16 +1,24 @@
 import { makeAutoObservable } from "mobx";
 export default class MapStore {
     map = null;
-    layerRegistry = new Map();
-    sketchesSource = null;
     selectedFeature = null;
+    requestedFeatures = null;
+    rasterLayerNames = [];
 
     constructor() {
         makeAutoObservable(this);
     }
 
+    setRasterLayerNames = (layerNames) => {
+        this.rasterLayerNames = layerNames;
+    }
+
     setSelectedFeature = (selected) => {
         this.selectedFeature = selected
+    }
+
+    setRequestedFeatures = (features) => {
+        this.requestedFeatures = features;
     }
     // with arrow fun we dont need to bound action
 
