@@ -12,7 +12,7 @@ W ramach nauki aktualnie przepisywany (WIP) wykorzystując bibliotekę React.
 
 Dane testowe zostały udostępnione lokalnie przy pomocy usług WMS i WFS w GeoServer.
 
-![Raster Search](./images/raster_search.png)
+![Raster Search](/../../../natamora/blob/main/images/hist-maps/raster_search.png)
 ## 
 All rights reserved
 Copyright &copy; Katarzyna Morawska 2024
