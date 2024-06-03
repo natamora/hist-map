@@ -11,7 +11,8 @@ W ramach nauki aktualnie przepisywany (WIP) wykorzystując bibliotekę React.
 * Semantic UI
 
 Dane testowe zostały udostępnione lokalnie przy pomocy usług WMS i WFS w GeoServer.
-  
+
+![Raster Search](./images/raster_search.png)
 ## 
 All rights reserved
 Copyright &copy; Katarzyna Morawska 2024
