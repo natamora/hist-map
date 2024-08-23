@@ -32,6 +32,12 @@ Mapy z georeferencją są udostępniane dwuetapowo. Extenty map wraz z metadanym
 
 ![Raster Search](/../../../natamora/blob/main/images/hist-maps/raster_search.png)
 
+## To do
+
+- Dodanie geokodera w celu umożliwienia wyszukiwania na podstawie adresów
+- Wprowadzenie funkcji wyszukiwania poprzez zaznaczenie obszaru na mapie
+- Dodanie slidera do regulacji przejrzystości rastrów na podglądzie
+
 ##
 
 All rights reserved.  
