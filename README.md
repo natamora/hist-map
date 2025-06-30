@@ -1,12 +1,12 @@
-# Mapy historyczne (WIP)
+# Historical Maps
 
-**Mapy historyczne** to aplikacja powstała na potrzeby pracy magisterskiej „Aplikacja internetowa do wyświetlania map historycznych przy pomocy technologii GIS”, zrealizowanej na Akademii Górniczo-Hutniczej w Krakowie pod opieką dr inż. Michała Lupy. Oryginalna wersja aplikacji została stworzona z użyciem JavaScript i jQuery, OpenLayers, oraz ArcGIS Server (udostępnienie extentów i rastrów przez WFS i WMS).
+**Historical Maps** is an application developed for the master's thesis *"A web application to display historical maps using GIS "*, completed at AGH University of Science and Technology in Kraków under the supervision of Dr Eng. Michał Lupa. The original version of the application was built using JavaScript and jQuery, OpenLayers, and ArcGIS Server (providing extents and rasters via WFS and WMS).
 
-Obecnie aplikacja jest przepisywana (WIP) w ramach nauki, z wykorzystaniem biblioteki React.
+As part of further learning, I started rewriting the application in React.
 
-Głównym celem aplikacji jest wyszukiwanie i wyświetlanie map historycznych przy pomocy technologii GIS. System umożliwia prezentację skanów map z georeferencją oraz szkiców, które nie są zorientowane w układzie współrzędnych.
+The main goal of the application is to search and display historical maps using GIS technologies. The system enables the presentation of scanned georeferenced maps as well as sketches that are not aligned to a coordinate system.
 
-## Technologie
+## Technologies
 
 - **JavaScript**
 - **React**
@@ -14,29 +14,29 @@ Głównym celem aplikacji jest wyszukiwanie i wyświetlanie map historycznych pr
 - **MobX**
 - **Semantic UI**
 
-Dane testowe do odświeżonej aplikacji są udostępniane lokalnie za pomocą usług WMS i WFS w GeoServer, ze względu na brak licencji do ArcGIS Server.
+Test data for the updated application is served locally using WMS and WFS services in GeoServer, due to lack of an ArcGIS Server license.
 
-## Udostępnianie szkiców
+## Sketch sharing
 
-Szkice to rastry niezorientowane w układzie współrzędnych. Posiadają jednak metadane z wektorowymi extentami obrazującymi zasięgi na mapie. Te extenty z metadanymi zostały publikowane jako WFS. Aplikacja umożliwia wyszukiwanie szkiców po atrybutach (np. data, tytuł szkicu), wykonuje zapytanie do serwera WFS i wyświetla zasięgi szkiców na mapie.
+Sketches are rasters not aligned to a coordinate system. However, they contain metadata with vector extents indicating their coverage area on the map. These extents with metadata were published as WFS. The application allows searching for sketches by attributes (e.g. date, sketch title), performs a WFS query, and displays the sketch extents on the map.
 
 ![Sketch shape](/../../../natamora/blob/main/images/hist-maps/szkic.png)
 
-Po kliknięciu na wybrany kształt możliwy jest podgląd szkicu i pobranie oryginału.
+By clicking on the selected shape, a preview of the sketch and the option to download the original file are available.
 
 ![Sketch view](/../../../natamora/blob/main/images/hist-maps/szkic-tif.png)
 
-## Udostępnianie plików z georeferencją
+## Sharing georeferenced files
 
-Mapy z georeferencją są udostępniane dwuetapowo. Extenty map wraz z metadanymi są dostępne przez WFS. Użytkownik może wyszukiwać interesujące go arkusze map poprzez formularz, a aplikacja wykonuje zapytanie do serwera WFS i wyświetla wektorowe extenty na mapie. Na dole okna pojawia się panel z wynikami wyszukiwania, z którego użytkownik może wybrać interesujące go arkusze, załadować je na mapę (przy pomocy zapytania do serwera WMS)  lub pobrać oryginały.
+Georeferenced maps are served in two steps. Map extents with metadata are available via WFS. The user can search for specific sheets using a form, and the application performs a WFS query and displays the vector extents on the map. A result panel appears at the bottom of the window, allowing users to select desired sheets, load them onto the map (via a WMS request), or download the originals.
 
 ![Raster Search](/../../../natamora/blob/main/images/hist-maps/raster_search.png)
 
 ## To do
 
-- Dodanie geokodera w celu umożliwienia wyszukiwania na podstawie adresów
-- Wprowadzenie funkcji wyszukiwania poprzez zaznaczenie obszaru na mapie
-- Dodanie slidera do regulacji przejrzystości rastrów na podglądzie
+- Add a geocoder to enable address-based search
+- Introduce search functionality by drawing an area on the map
+- Add a slider to adjust raster transparency in the preview
 
 ##
 
